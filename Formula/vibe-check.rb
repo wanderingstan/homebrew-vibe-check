@@ -136,8 +136,6 @@ class VibeCheck < Formula
     opoo "Run 'brew services start vibe-check' to enable auto-start on boot!"
   end
 
-  plist_options startup: true
-
   service do
     run [opt_bin/"vibe-check", "--skip-skills-check"]
     working_dir var/"vibe-check"
