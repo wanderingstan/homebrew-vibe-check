@@ -69,6 +69,9 @@ class VibeCheck < Formula
     libexec.install "monitor.py", "secret_detector.py"
     (libexec/"scripts").install "scripts/query-helper.sh"
 
+    # Make monitor.py executable
+    chmod 0755, libexec/"monitor.py"
+
     # Install skills to share directory
     (share/"vibe-check/skills").install Dir["claude-skills/*.md"]
 
