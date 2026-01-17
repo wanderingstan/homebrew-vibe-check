@@ -75,10 +75,14 @@ class VibeCheck < Formula
     # Install skills to share directory
     (share/"vibe-check/skills").install Dir["claude-skills/*.md"]
 
-    # Create executable wrapper for monitor
-    (bin/"vibe-check").write_env_script libexec/"monitor.py",
-      PYTHONPATH: libexec,
-      VIBE_CHECK_HOME: var/"vibe-check"
+    # Create executable wrapper for monitor that uses venv python
+    (bin/"vibe-check").write <<~EOS
+      #!/bin/bash
+      export PYTHONPATH="#{libexec}"
+      export VIBE_CHECK_HOME="#{var}/vibe-check"
+      exec "#{libexec}/bin/python3" "#{libexec}/monitor.py" "$@"
+    EOS
+    chmod 0755, bin/"vibe-check"
 
     # Create query helper wrapper
     (bin/"vibe-check-query").write_env_script libexec/"scripts/query-helper.sh",
