@@ -57,8 +57,13 @@ class VibeCheck < Formula
   end
 
   def install
-    # Create virtual environment and install dependencies
-    virtualenv_install_with_resources
+    # Create virtual environment
+    venv = virtualenv_create(libexec, "python3.12")
+
+    # Install Python dependencies (resources) into the venv
+    resources.each do |r|
+      venv.pip_install r
+    end
 
     # Copy Python modules to libexec
     libexec.install "monitor.py", "secret_detector.py"
