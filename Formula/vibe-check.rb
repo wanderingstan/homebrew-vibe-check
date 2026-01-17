@@ -133,7 +133,7 @@ class VibeCheck < Formula
     ohai "Installed Claude Code skills to ~/.claude/skills/"
 
     # Auto-start the service
-    quiet_system "#{HOMEBREW_PREFIX}/bin/brew", "services", "start", "vibe-check"
+    system "#{HOMEBREW_PREFIX}/bin/brew", "services", "start", "wanderingstan/vibe-check/vibe-check"
     ohai "Started vibe-check service (will auto-start on boot)"
   end
 
