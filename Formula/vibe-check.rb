@@ -131,6 +131,10 @@ class VibeCheck < Formula
     end
 
     ohai "Installed Claude Code skills to ~/.claude/skills/"
+
+    # Auto-start the service
+    quiet_system "#{HOMEBREW_PREFIX}/bin/brew", "services", "start", "vibe-check"
+    ohai "Started vibe-check service (will auto-start on boot)"
   end
 
   service do
@@ -155,20 +159,24 @@ class VibeCheck < Formula
 
   def caveats
     <<~EOS
+      ✅ vibe-check is now running and will auto-start on boot!
+
       Configuration: #{var}/vibe-check/config.json
       Database: #{var}/vibe-check/vibe_check.db
       Skills: ~/.claude/skills/
 
-      Daemon Management (choose one):
-        vibe-check start           # Built-in daemon (recommended)
-        brew services start vibe-check  # Or use Homebrew services
+      Manage the service:
+        brew services stop vibe-check   # Stop and disable auto-start
+        brew services restart vibe-check # Restart
 
-      Other commands:
-        vibe-check status          # Check if running
+      Or use built-in commands:
         vibe-check stop            # Stop daemon
-        vibe-check restart         # Restart daemon
+        vibe-check start           # Start daemon (won't auto-start on boot)
+
+      Check status:
+        vibe-check status          # Check if running
         vibe-check logs            # View logs
-        vibe-check --skip-backlog  # Run foreground, skip backlog
+        brew services info vibe-check # Service status
 
       Query your conversations:
         vibe-check-query "SELECT COUNT(*) FROM conversation_events"
