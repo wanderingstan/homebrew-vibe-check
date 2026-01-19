@@ -3,8 +3,8 @@ class VibeCheck < Formula
 
   desc "Claude Code conversation monitoring and analytics"
   homepage "https://github.com/wanderingstan/vibe-check"
-  url "https://github.com/wanderingstan/vibe-check/archive/refs/tags/v1.0.13.tar.gz"
-  sha256 "8d6c4dc49120af8f8cc3b809709e3f98394517f8991306596e40a8018e393cae"
+  url "https://github.com/wanderingstan/vibe-check/archive/refs/tags/v1.0.14.tar.gz"
+  sha256 "759c00359488e0e138ae34f3412dab92e4887c4ec7ce63b52215927d65aae95f"
   license "MIT"
   head "https://github.com/wanderingstan/vibe-check.git", branch: "main"
 
@@ -141,7 +141,7 @@ class VibeCheck < Formula
     ohai "Installed Claude Code skills to ~/.claude/skills/"
 
     # Remind user to start the service
-    opoo "Run 'brew services start vibe-check' to enable auto-start on boot!"
+    opoo "Run 'vibe-check start' to enable monitoring with auto-start on boot!"
   end
 
   service do
@@ -191,7 +191,7 @@ class VibeCheck < Formula
       ║                                                                       ║
       ║  🚀 IMPORTANT: Run this command to start monitoring:                  ║
       ║                                                                       ║
-      ║           brew services start vibe-check                              ║
+      ║                      vibe-check start                                 ║
       ║                                                                       ║
       ╚═══════════════════════════════════════════════════════════════════════╝
 
@@ -201,10 +201,11 @@ class VibeCheck < Formula
         Skills:   ~/.claude/skills/
 
       🛠️  Commands:
-        brew services start vibe-check  # Start & enable auto-start
-        brew services stop vibe-check   # Stop & disable auto-start
-        vibe-check status               # Check if running
-        vibe-check logs                 # View logs
+        vibe-check start    # Start & enable auto-start on boot
+        vibe-check stop     # Stop & disable auto-start
+        vibe-check restart  # Restart the service
+        vibe-check status   # Check if running
+        vibe-check logs     # View logs
 
       🔍 Query your conversations:
         vibe-check-query "SELECT COUNT(*) FROM conversation_events"
