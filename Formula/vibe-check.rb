@@ -3,8 +3,8 @@ class VibeCheck < Formula
 
   desc "Claude Code conversation monitoring and analytics"
   homepage "https://github.com/wanderingstan/vibe-check"
-  url "https://github.com/wanderingstan/vibe-check/archive/refs/tags/v1.0.11.tar.gz"
-  sha256 "fb429f55cc27d6f6eb1b7ea2c08c38c3c3b66cdffb8fc39befb840f185dfbe10"
+  url "https://github.com/wanderingstan/vibe-check/archive/refs/tags/v1.0.12.tar.gz"
+  sha256 "4059728e69dece799738a6ae60af45335d2813d10b484c87a6e0bd9e7cb778d6"
   license "MIT"
   head "https://github.com/wanderingstan/vibe-check.git", branch: "main"
 
@@ -177,33 +177,46 @@ class VibeCheck < Formula
       WARN
     end
     s += <<~EOS
-      🧜 To enable vibe-check to auto-start on boot, run:
-        brew services start vibe-check
 
-      Configuration: #{var}/vibe-check/config.json
-      Database: #{var}/vibe-check/vibe_check.db
-      Skills: ~/.claude/skills/
+      ██╗   ██╗██╗██████╗ ███████╗       ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗
+      ██║   ██║██║██╔══██╗██╔════╝      ██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝
+      ██║   ██║██║██████╔╝█████╗  █████╗██║     ███████║█████╗  ██║     █████╔╝
+      ╚██╗ ██╔╝██║██╔══██╗██╔══╝  ╚════╝██║     ██╔══██║██╔══╝  ██║     ██╔═██╗
+       ╚████╔╝ ██║██████╔╝███████╗      ╚██████╗██║  ██║███████╗╚██████╗██║  ██╗
+        ╚═══╝  ╚═╝╚═════╝ ╚══════╝       ╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝  ╚═╝
 
-      Commands:
-        brew services start vibe-check  # Enable auto-start on boot
-        brew services stop vibe-check   # Stop and disable auto-start
+                         ~ Claude Code Analytics ~
+
+      ╔═══════════════════════════════════════════════════════════════════════╗
+      ║                                                                       ║
+      ║  🚀 IMPORTANT: Run this command to start monitoring:                  ║
+      ║                                                                       ║
+      ║           brew services start vibe-check                              ║
+      ║                                                                       ║
+      ╚═══════════════════════════════════════════════════════════════════════╝
+
+      📁 Files:
+        Config:   #{var}/vibe-check/config.json
+        Database: #{var}/vibe-check/vibe_check.db
+        Skills:   ~/.claude/skills/
+
+      🛠️  Commands:
+        brew services start vibe-check  # Start & enable auto-start
+        brew services stop vibe-check   # Stop & disable auto-start
         vibe-check status               # Check if running
         vibe-check logs                 # View logs
 
-      Query your conversations:
+      🔍 Query your conversations:
         vibe-check-query "SELECT COUNT(*) FROM conversation_events"
 
-      Claude Code skills installed:
+      ✨ Claude Code skills installed:
         • "claude stats" - Usage statistics
         • "search my conversations for X" - Search history
         • "what have I been working on?" - Recent activity
 
-      To enable remote API sync (optional):
-        Edit #{var}/vibe-check/config.json and set:
-          "api.enabled": true
-          "api.url": "https://your-server.com"
-          "api.api_key": "your-key"
-        Then: vibe-check restart
+      ☁️  Remote API sync (optional):
+        vibe-check auth login
+        vibe-check restart
     EOS
     s
   end
