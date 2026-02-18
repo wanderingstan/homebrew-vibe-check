@@ -3,8 +3,8 @@ class VibeCheck < Formula
 
   desc "Claude Code conversation monitoring and analytics"
   homepage "https://github.com/wanderingstan/vibe-check"
-  url "https://github.com/wanderingstan/vibe-check/archive/refs/tags/v1.1.16.tar.gz"
-  sha256 "701513cca74a98c1d071650c3e8c749d85cdce3f6c26703ab34b6f0497c16ebb"
+  url "https://github.com/wanderingstan/vibe-check/archive/refs/tags/v1.1.17.tar.gz"
+  sha256 "10e592bfa2da2240171e635407cdc41135a413fe29e345d8044287b1174b71a0"
   license "MIT"
   head "https://github.com/wanderingstan/vibe-check.git", branch: "main"
 
@@ -68,6 +68,9 @@ class VibeCheck < Formula
     # Copy Python modules to libexec
     libexec.install "vibe-check.py", "secret_detector.py"
     (libexec/"scripts").install "scripts/query-helper.sh"
+
+    # Install git hooks to libexec/scripts
+    (libexec/"scripts").install "scripts/prepare-commit-msg", "scripts/post-commit"
 
     # Make vibe-check.py executable
     chmod 0755, libexec/"vibe-check.py"
